@@ -4,7 +4,7 @@ import KpiCards from '@/components/dashboard/KpiCards';
 import OrderTabs from '@/components/dashboard/OrderTabs';
 import Button from '@/components/Button';
 import DynamicTable from '@/components/DynamicTable';
-import { getOrderColumns } from '@/configs/orderColumns';
+import { getOrderColumns } from '@/config/orderColumns';
 
 export default function DashboardPage() {
     const {

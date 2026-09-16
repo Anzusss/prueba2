@@ -35,6 +35,7 @@ export default function HomePage() {
                     categoria={categoria}
                     onCategoryChange={setCategoria}
                 />
+                <button className="bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded-lg border border-black focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 focus:ring-offset-white active:bg-primary-800" onClick={() => navigate('/nuevo')}>Agregar producto</button>
             </div>
 
             <DynamicTable data={productosFiltrados} columns={columnas} />
