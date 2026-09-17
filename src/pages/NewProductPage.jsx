@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import ProductForm from '@/components/ProductForm';
 import { useProducts } from '@/hooks/useProducts';
+import { productSchema } from '@/schemas/productSchemas'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form';
 
 export default function NewProductPage() {

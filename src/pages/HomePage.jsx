@@ -4,6 +4,7 @@ import ProductFilters from '@/components/ProductFilters';
 import { getProductColumns } from '@/config/productColumns';
 import { useProducts } from '@/hooks/useProducts';
 import { useProductFilters } from '@/hooks/useProductFilters';
+import Button from '@/components/Button';
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -35,7 +36,10 @@ export default function HomePage() {
                     categoria={categoria}
                     onCategoryChange={setCategoria}
                 />
-                <button className="bg-primary-600 hover:bg-primary-700 font-medium py-2 px-4 rounded-lg border border-black focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 focus:ring-offset-white active:bg-primary-800" onClick={() => navigate('/nuevo')}>Agregar producto</button>
+                <Button
+                    onClick={() => navigate('/nuevo')}>
+                    Agregar producto
+                </Button>
             </div>
 
             <DynamicTable data={productosFiltrados} columns={columnas} />
