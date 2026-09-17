@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ProductForm from '@/components/ProductForm';
 import { useProducts } from '@/hooks/useProducts';
+import { useForm } from 'react-hook-form';
 
 export default function NewProductPage() {
     const navigate = useNavigate();

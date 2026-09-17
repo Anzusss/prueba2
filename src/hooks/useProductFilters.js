@@ -8,8 +8,8 @@ export const useProductFilters = (products = []) => {
     const productosFiltrados = useMemo(() => {
         return products.filter((p) => {
             const coincideBusqueda =
-                p.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
-                p.sku.toLowerCase().includes(busqueda.toLowerCase());
+                p.nombre?.toLowerCase?.().includes(busqueda?.toLowerCase?.()) ||
+                p.sku?.toLowerCase?.().includes(busqueda?.toLowerCase?.());
 
             const coincideCategoria = categoria === '' || p.categoria === categoria;
 

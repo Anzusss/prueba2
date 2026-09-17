@@ -18,7 +18,7 @@ export default function HomePage() {
         productosFiltrados
     } = useProductFilters(productos);
 
-    // Columnas dinamicas con acciones[cite: 4]
+    // Columnas dinamicas con acciones
     const columnas = getProductColumns({
         onView: (id) => navigate(`/${id}`),
         onDelete: eliminarProducto
