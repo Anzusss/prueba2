@@ -1,6 +1,6 @@
 // src/components/dashboard/KpiCards.jsx
 import { MetricCard } from '@/components/MetricCard';
-import { formatCurrency } from '@/utils/formatters';
+import { formatCurrency } from '@/components/utils/formatters';
 
 export default function KpiCards({ metrics }) {
     return (

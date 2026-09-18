@@ -1,7 +1,7 @@
 // src/hooks/useDashboard.js
 import { useState, useMemo } from 'react';
-import { orderService } from '@/services/orderService';
-import { useAbortableFetch } from '@/hooks/useAbortableFetch';
+import { orderService } from '@/components/services/orderService';
+import { useAbortableFetch } from '@/components/hooks/useAbortableFetch';
 
 export const useDashboard = () => {
     const [statusTab, setStatusTab] = useState('todas');

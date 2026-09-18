@@ -2,15 +2,25 @@ import { useForm } from "react-hook-form";
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { zodResolver } from '@hookform/resolvers/zod'
-import { productSchema } from '@/schemas/productSchemas'
+import { getProductSchema } from '@/components/schemas/productSchemas'
+import { useTheme } from '@/components/contexts/ThemeContext';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 
 export default function ProductForm({ onSubmit, onCancel, initialData = {} }) {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(productSchema)
+    const { theme } = useTheme();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        resolver: zodResolver(getProductSchema(initialData?.id)),
+        defaultValues: initialData
     });
+    useEffect(() => {
+        // Solo hace reset si initialData tiene llaves (ej. { nombre: "Algo", ... })
+        if (initialData && Object.keys(initialData).length > 0) {
+            reset(initialData);
+        }
+    }, [initialData, reset]);
     const categories = ['Tecnología', 'Hogar', 'Ropa'];
-
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -45,11 +55,11 @@ export default function ProductForm({ onSubmit, onCancel, initialData = {} }) {
             </div>
 
             <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium text-gray-700">Categoría</label>
+                <label className={`text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Categoría</label>
                 <select
                     id="categoria"
                     {...register("categoria")}
-                    className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                    className={`px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${theme === 'dark' ? 'b order-gray-600 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-900'}`}
                 >
                     {categories.map((category) => (
                         <option key={category} value={category}>
@@ -60,7 +70,7 @@ export default function ProductForm({ onSubmit, onCancel, initialData = {} }) {
             </div>
 
             <div className="flex justify-end space-x-3 pt-4 border-t">
-                <Button variant="secondary" onClick={onCancel}>
+                <Button type="button" variant="secondary" onClick={onCancel}>
                     Cancelar
                 </Button>
                 <Button type="submit" variant="primary">

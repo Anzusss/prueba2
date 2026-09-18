@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductCard from '@/components/ProductCard';
 import Button from '@/components/Button';
+import { useTheme } from '@/components/contexts/ThemeContext';
 
 export default function DetailPage() {
     const { id } = useParams(); // Lee el ID dinámico de la URL
     const navigate = useNavigate();
+    const { theme } = useTheme();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -18,14 +20,14 @@ export default function DetailPage() {
     }, [id]);
 
     if (loading) {
-        return <p className="text-center py-8 text-gray-500">Cargando producto...</p>;
+        return <p className={`text-center py-8 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Cargando producto...</p>;
     }
 
     if (!product) {
         return (
-            <div className="text-center py-12 bg-white rounded-lg border border-gray-200 p-6 space-y-4">
-                <h2 className="text-xl font-bold text-gray-800">Producto no encontrado</h2>
-                <p className="text-gray-500 text-sm">El ID consultado no existe en el inventario.</p>
+            <div className={`text-center py-12 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} rounded-lg border border-gray-200 p-6 space-y-4`}>
+                <h2 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Producto no encontrado</h2>
+                <p className={`text-gray-500 text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>El ID consultado no existe en el inventario.</p>
                 <Button variant="primary" onClick={() => navigate('/')}>
                     Volver al Inicio
                 </Button>
